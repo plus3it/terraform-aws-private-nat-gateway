@@ -3,21 +3,20 @@ module "nat_gateway" {
   source   = "../../"
 
   nat_gateway = {
-    name = "${local.test_name}-intra-nat-${each.value.az}"
-    tags = local.tags
-
     # In this scenario, we create new subnets to host the private "intra-nat" natgws.
     # The private natgws will nat traffic from the intra subnets created by the
     # vpc module and send it out the public natgw.
+
+    name = "${local.test_name}-intra-nat-${each.value.az}"
+    tags = local.tags
+
     subnet = {
-      create     = true
       cidr_block = cidrsubnet(local.vpc_cidr, 8, each.value.index + 56)
       name       = "${local.test_name}-intra-nat-${each.value.az}"
     }
 
     route_table = {
-      create = true
-      name   = "${local.test_name}-intra-nat-${each.value.az}"
+      name = "${local.test_name}-intra-nat-${each.value.az}"
     }
 
     vpc = {

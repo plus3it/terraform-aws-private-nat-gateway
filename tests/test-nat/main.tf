@@ -3,15 +3,13 @@ module "nat_gateway" {
   source   = "../../"
 
   nat_gateway = {
-    name = "${local.test_name}-intra-nat-${each.value.az}"
-    tags = local.tags
-
     # In this scenario, the private "intra-nat" natgw is hosted in the intra subnets
     # created by the vpc module. This is not setting up the subnets that will route
     # via the private natgws. Those would be handled separately by the user.
-    subnet = {
-      id = element(module.vpc.intra_subnets, each.value.index)
-    }
+
+    name      = "${local.test_name}-intra-nat-${each.value.az}"
+    subnet_id = element(module.vpc.intra_subnets, each.value.index)
+    tags      = local.tags
 
     routes = [
       {

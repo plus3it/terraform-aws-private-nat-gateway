@@ -1,6 +1,6 @@
 resource "aws_nat_gateway" "this" {
   connectivity_type = "private"
-  subnet_id         = var.nat_gateway.subnet.create ? aws_subnet.this[0].id : var.nat_gateway.subnet.id
+  subnet_id         = var.nat_gateway.subnet != null ? aws_subnet.this[0].id : var.nat_gateway.subnet_id
 
   tags = merge(
     var.nat_gateway.tags,
@@ -9,7 +9,7 @@ resource "aws_nat_gateway" "this" {
 }
 
 resource "aws_subnet" "this" {
-  count = var.nat_gateway.subnet.create ? 1 : 0
+  count = var.nat_gateway.subnet != null ? 1 : 0
 
   vpc_id     = var.nat_gateway.vpc.id
   cidr_block = var.nat_gateway.subnet.cidr_block
@@ -22,7 +22,7 @@ resource "aws_subnet" "this" {
 }
 
 resource "aws_route_table" "this" {
-  count = var.nat_gateway.route_table.create ? 1 : 0
+  count = var.nat_gateway.route_table != null ? 1 : 0
 
   vpc_id = var.nat_gateway.vpc.id
 
@@ -34,10 +34,10 @@ resource "aws_route_table" "this" {
 }
 
 resource "aws_route_table_association" "this" {
-  count = var.nat_gateway.route_table.create ? 1 : 0
+  count = var.nat_gateway.route_table != null ? 1 : 0
 
   route_table_id = aws_route_table.this[0].id
-  subnet_id      = var.nat_gateway.subnet.create ? aws_subnet.this[0].id : var.nat_gateway.subnet.id
+  subnet_id      = var.nat_gateway.subnet != null ? aws_subnet.this[0].id : var.nat_gateway.subnet_id
 }
 
 resource "aws_route" "this" {
