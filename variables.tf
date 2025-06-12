@@ -6,9 +6,10 @@ variable "nat_gateway" {
     tags      = optional(map(string))
 
     subnet = optional(object({
-      cidr_block = string
-      name       = string
-      tags       = optional(map(string))
+      cidr_block        = string
+      name              = string
+      availability_zone = optional(string)
+      tags              = optional(map(string))
     }))
 
     route_table = optional(object({

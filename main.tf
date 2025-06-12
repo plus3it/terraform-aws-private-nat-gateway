@@ -11,8 +11,9 @@ resource "aws_nat_gateway" "this" {
 resource "aws_subnet" "this" {
   count = var.nat_gateway.subnet != null ? 1 : 0
 
-  vpc_id     = var.nat_gateway.vpc.id
-  cidr_block = var.nat_gateway.subnet.cidr_block
+  vpc_id            = var.nat_gateway.vpc.id
+  cidr_block        = var.nat_gateway.subnet.cidr_block
+  availability_zone = var.nat_gateway.subnet.availability_zone
 
   tags = merge(
     var.nat_gateway.tags,
