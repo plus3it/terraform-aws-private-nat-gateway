@@ -11,8 +11,9 @@ module "nat_gateway" {
     tags = local.tags
 
     subnet = {
-      cidr_block = cidrsubnet(local.vpc_cidr, 8, each.value.index + 56)
-      name       = "${local.test_name}-intra-nat-${each.value.az}"
+      availability_zone = each.value.az
+      cidr_block        = cidrsubnet(local.vpc_cidr, 8, each.value.index + 56)
+      name              = "${local.test_name}-intra-nat-${each.value.az}"
     }
 
     route_table = {
