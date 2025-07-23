@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+### [1.2.0](https://github.com/plus3it/terraform-aws-private-nat-gateway/releases/tag/1.2.0)
+
+**Released**: 2025.07.23
+
+**Summary**:
+
+*   Provides outputs for the nat gateway and related resources
+
 ### [1.1.0](https://github.com/plus3it/terraform-aws-private-nat-gateway/releases/tag/1.1.0)
 
 **Released**: 2025.06.12
