@@ -26,6 +26,10 @@ No requirements.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_nat_gateway"></a> [nat\_gateway](#output\_nat\_gateway) | Object of attributes for the NAT Gateway resource |
+| <a name="output_route_table"></a> [route\_table](#output\_route\_table) | Object of attributes for the Route Table resource |
+| <a name="output_subnet"></a> [subnet](#output\_subnet) | Object of attributes for the Subnet resource |
 
 <!-- END TFDOCS -->
