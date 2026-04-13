@@ -2,6 +2,9 @@ resource "aws_nat_gateway" "this" {
   connectivity_type = "private"
   subnet_id         = var.nat_gateway.subnet != null ? aws_subnet.this[0].id : var.nat_gateway.subnet_id
 
+  secondary_private_ip_address_count = var.nat_gateway.secondary_private_ip_address_count
+  secondary_private_ip_addresses     = var.nat_gateway.secondary_private_ip_addresses
+
   tags = merge(
     var.nat_gateway.tags,
     { "Name" = var.nat_gateway.name },

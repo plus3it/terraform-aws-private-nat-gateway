@@ -11,6 +11,8 @@ module "nat_gateway" {
     subnet_id = element(module.vpc.intra_subnets, each.value.index)
     tags      = local.tags
 
+    secondary_private_ip_address_count = 1
+
     routes = [
       {
         # Route traffic *from* the intra-nat *to* the public natgw
