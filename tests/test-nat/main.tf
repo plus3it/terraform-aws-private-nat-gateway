@@ -11,6 +11,8 @@ module "nat_gateway" {
     subnet_id = element(module.vpc.intra_subnets, each.value.index)
     tags      = local.tags
 
+    secondary_private_ip_address_count = 1
+
     routes = [
       {
         # Route traffic *from* the intra-nat *to* the public natgw
@@ -38,7 +40,7 @@ locals {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 5.0"
+  version = "~> 6.0"
 
   name = local.test_name
   cidr = local.vpc_cidr

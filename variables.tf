@@ -5,6 +5,9 @@ variable "nat_gateway" {
     subnet_id = optional(string)
     tags      = optional(map(string))
 
+    secondary_private_ip_address_count = optional(number)
+    secondary_private_ip_addresses     = optional(list(string))
+
     subnet = optional(object({
       cidr_block        = string
       name              = string
