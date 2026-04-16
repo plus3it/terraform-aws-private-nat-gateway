@@ -9,6 +9,10 @@ resource "aws_nat_gateway" "this" {
     var.nat_gateway.tags,
     { "Name" = var.nat_gateway.name },
   )
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_subnet" "this" {
